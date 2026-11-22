@@ -73,3 +73,21 @@ if(menu){
   document.addEventListener('click',e=>{if(!menu.contains(e.target))menu.open=false;});
   addEventListener('keydown',e=>{if(e.key==='Escape' && menu.open){menu.open=false;menu.querySelector('summary').focus();}});
 }
+const photoDialog=document.querySelector('.zoom');
+if(photoDialog){
+  document.querySelectorAll('[data-zoom]').forEach(button=>button.addEventListener('click',()=>{
+    const source=button.querySelector('img');
+    const large=photoDialog.querySelector('img');
+    large.src=source.src;
+    large.alt=source.alt;
+    photoDialog.querySelector('strong').textContent=source.alt;
+    photoDialog.querySelector('a').href=button.dataset.url;
+    photoDialog.showModal();
+  }));
+  photoDialog.querySelector('button').addEventListener('click',()=>photoDialog.close());
+  photoDialog.addEventListener('click',e=>{
+    if(e.target!==photoDialog)return;
+    const rect=photoDialog.getBoundingClientRect();
+    if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom)photoDialog.close();
+  });
+}
