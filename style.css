@@ -530,6 +530,14 @@ header {
 .journal {
   background: #e4e9ec;
 }
+.process-heading {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #e4e9ec;
+  padding-block: clamp(8px, 1.2vw, 18px);
+  margin-bottom: clamp(12px, 1.6vw, 24px);
+}
 .scene {
   display: grid;
   grid-template-columns: minmax(0, 1.11fr) minmax(0, 0.84fr);
@@ -538,7 +546,7 @@ header {
 }
 .pin {
   position: sticky;
-  top: clamp(22px, 10svh, 85px);
+  top: var(--process-heading-height, 110px);
   background: var(--night);
   color: white;
   overflow: hidden;
@@ -1072,7 +1080,6 @@ html:has(dialog[open]) {
     gap: 12px;
   }
   .pin {
-    top: 0;
     z-index: 1;
     margin-inline: calc(-1 * var(--gutter));
     padding-inline: var(--gutter);

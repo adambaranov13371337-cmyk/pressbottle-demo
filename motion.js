@@ -153,6 +153,13 @@ if (specimen) {
 
 const scene = document.querySelector("[data-scenes]");
 if (scene) {
+  const section = scene.closest(".process");
+  const heading = section.querySelector(".process-heading");
+  function positionPhoto() {
+    section.style.setProperty("--process-heading-height", heading.offsetHeight + "px");
+  }
+  positionPhoto();
+  new ResizeObserver(positionPhoto).observe(heading);
   const steps = [...scene.querySelectorAll("[data-step]")];
   const pictures = [...scene.querySelectorAll("[data-picture]")];
   const caption = scene.querySelector("[data-picture-label]");
